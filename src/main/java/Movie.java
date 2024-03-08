@@ -8,7 +8,7 @@ import java.net.URLConnection;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 public class Movie {
-    public static final String API_KEY = "990db9e1";   // TODO --> add your api key about Movie here
+    public static final String API_KEY = "4cc68bea";   // TODO --> add your api key about Movie here
     int ImdbVotes;
     ArrayList<String> actorsList;
     String rating;
@@ -52,9 +52,9 @@ public class Movie {
      */
 
     public String getMovieData(String title) throws IOException {
-        URL url = new URL("https://www.omdbapi.com/?t="+title+"&apikey="+"990db9e1");
+        URL url = new URL("https://www.omdbapi.com/?t="+title+"&apikey="+ API_KEY);
         URLConnection Url = url.openConnection();
-        Url.setRequestProperty("Authorization", "Key" + "990db9e1");
+        Url.setRequestProperty("Authorization", "Key" + "4cc68bea1");
         BufferedReader reader = new BufferedReader(new InputStreamReader(Url.getInputStream()));
         String line;
         StringBuilder stringBuilder = new StringBuilder();
@@ -79,20 +79,10 @@ public class Movie {
     }
 
     public String getRatingViaApi(String moviesInfoJson){
-        //TODO --> (This function must return the rating in the "Ratings" part
-        // where the source is "Internet Movie Database")  -->
-
         JSONObject rate_object = new JSONObject(moviesInfoJson);
         JSONArray rate_array = rate_object.getJSONArray("Ratings");
-        String rating = "";
-        for(int i = 0; i < rate_array.length(); i++)
-        {
-            JSONObject rate = rate_array.getJSONObject(i);
-            if(rate.get("Source").equals("Internet Movie Data"))
-            {
-                rating += rate.getString("Source") + ":" + rate.getString("Value");
-            }
-        }
+        JSONObject rate = rate_array.getJSONObject(0);
+        String rating = rate.getString("Value");
         return rating;
     }
     public String getYear(String moviesInfoJson)
@@ -289,6 +279,12 @@ public class Movie {
         String Actor = "";
         JSONObject Film_Actor = new JSONObject(movieInfoJson);
         Actor = Film_Actor.getString("Actors");
-        return "Actors: " + Actor;
+        return "Actors:pro " + Actor;
     }
 }
+
+
+
+
+
+
