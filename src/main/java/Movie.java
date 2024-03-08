@@ -81,13 +81,14 @@ public class Movie {
     public String getRatingViaApi(String moviesInfoJson){
         //TODO --> (This function must return the rating in the "Ratings" part
         // where the source is "Internet Movie Database")  -->
+
         JSONObject rate_object = new JSONObject(moviesInfoJson);
         JSONArray rate_array = rate_object.getJSONArray("Ratings");
         String rating = "";
         for(int i = 0; i < rate_array.length(); i++)
         {
             JSONObject rate = rate_array.getJSONObject(i);
-            if(rating.toString("Source").equals("Internet Movie Dat"))
+            if(rate.get("Source").equals("Internet Movie Data"))
             {
                 rating += rate.getString("Source") + ":" + rate.getString("Value");
             }
@@ -284,7 +285,7 @@ public class Movie {
         return Type;
     }
 
-    public void getActorListViaApi(String movieInfoJson) {
+    public String getActorListViaApi(String movieInfoJson) {
         String Actor = "";
         JSONObject Film_Actor = new JSONObject(movieInfoJson);
         Actor = Film_Actor.getString("Actors");

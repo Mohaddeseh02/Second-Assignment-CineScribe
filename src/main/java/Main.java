@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO --> complete main function
         runMenu();
     }
@@ -13,7 +13,7 @@ public class Main {
         while (true)
         {
             Scanner input = new Scanner(System.in);
-            System.out.println("Select an option:");
+            System.out.println("Hi, Welcome Movie and Actor database. In this program, you enter the name of the movie or actor and receive the information of them.");
             System.out.println("1. Movie");
             System.out.println("2. Actors");
             int choice = input.nextInt();
@@ -26,7 +26,6 @@ public class Main {
                     String check = movie_object.getMovieData(FilmName);
                     while (check.equals("Please check movies name!"))
                     {
-                        System.out.println(check);
                         FilmName = input.next();
                         check = movie_object.getMovieData(FilmName);
 
@@ -54,7 +53,6 @@ public class Main {
                     String Check = actors_object.getActorData(ActorName);
                     while (Check.equals("Please check actor name!"))
                     {
-                        System.out.println(check);
                         ActorName = input.next();
                         Check = actors_object.getActorData(ActorName);
 

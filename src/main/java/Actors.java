@@ -76,6 +76,10 @@ public class Actors {
                 date_birth = Date.getString("birthday");
             }
         }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         return "Birthday: " + date_birth;
     }
     public String getGender(String moviesInfoJson)
